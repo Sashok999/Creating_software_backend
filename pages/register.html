@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | Брон.ик</title>
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9eff7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* Навигация */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+            padding: 16px 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #1a4cff 0%, #7b3fe4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-weight: 600;
+            background: none;
+            -webkit-text-fill-color: #1e293b;
+            color: #1e293b;
+        }
+
+        .back-link {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #1a4cff;
+        }
+
+        /* Основной контент */
+        .auth-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .auth-card {
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px -20px rgba(26, 76, 255, 0.3);
+            width: 100%;
+            max-width: 480px;
+            padding: 48px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .auth-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0b1e33;
+            margin-bottom: 12px;
+        }
+
+        .auth-header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .auth-header p a {
+            color: #1a4cff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .auth-header p a:hover {
+            color: #0f3ad0;
+            text-decoration: underline;
+        }
+
+        /* Форма регистрации */
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-group label i {
+            color: #1a4cff;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            padding: 14px 18px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 24px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a4cff;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #94a3b8;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 50px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            cursor: pointer;
+            transition: color 0.2s;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+        }
+
+        .toggle-password:hover {
+            color: #1a4cff;
+        }
+
+        /* Условия и соглашения */
+        .terms {
+            margin: 16px 0 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: #1a4cff;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .checkbox-group a {
+            color: #1a4cff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        /* Кнопка регистрации */
+        .btn-register {
+            background: #1a4cff;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 16px 28px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 10px 20px -8px #1a4cff;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-register:hover {
+            background: #0f3ad0;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -8px #1a4cff;
+        }
+
+        /* Разделитель */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 24px 0 16px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .divider::before {
+            margin-right: 16px;
+        }
+
+        .divider::after {
+            margin-left: 16px;
+        }
+
+        /* Социальная регистрация */
+        .social-register {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 30px;
+            background: white;
+            font-size: 16px;
+            font-weight: 500;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            max-width: 120px;
+        }
+
+        .social-btn:hover {
+            border-color: #1a4cff;
+            background: #f5f9ff;
+            transform: translateY(-2px);
+        }
+
+        .social-btn i {
+            font-size: 20px;
+        }
+
+        .social-btn .fa-vk {
+            color: #4a76a8;
+        }
+
+        .social-btn .fa-google {
+            color: #ea4335;
+        }
+
+        .social-btn .fa-telegram {
+            color: #0088cc;
+        }
+
+        /* Уже есть аккаунт */
+        .login-prompt {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #eef2f6;
+        }
+
+        .login-prompt p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .login-prompt a {
+            color: #1a4cff;
+            text-decoration: none;
+            font-weight: 700;
+            margin-left: 6px;
+            transition: color 0.2s;
+        }
+
+        .login-prompt a:hover {
+            color: #0f3ad0;
+            text-decoration: underline;
+        }
+
+        /* Футер */
+        footer {
+            padding: 24px 0;
+            border-top: 1px solid #dee6ed;
+            color: #475569;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            background: transparent;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #475569;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: #1a4cff;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .auth-card {
+                padding: 36px 24px;
+                margin: 0 16px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .social-register {
+                flex-wrap: wrap;
+            }
+
+            .social-btn {
+                max-width: none;
+                flex: 1 1 calc(33.333% - 8px);
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .auth-header h1 {
+                font-size: 28px;
+            }
+
+            .social-btn {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Брон<span>.ик</span></a>
+            <a href="/" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span>Вернуться на главную</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>Создать аккаунт</h1>
+                    <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
+                </div>
+
+                <form class="register-form" id="registerForm" method="post" action="/register">
+                    <!-- Имя и фамилия -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">
+                                <i class="fas fa-user"></i>
+                                Имя
+                            </label>
+                            <input
+                                type="text"
+                                id="firstName"
+                                name="first_name"
+                                placeholder="Александр"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">
+                                <i class="fas fa-user"></i>
+                                Фамилия
+                            </label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="last_name"
+                                placeholder="Иванов"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i>
+                            Электронная почта
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@mail.ru"
+                            required
+                        >
+                    </div>
+
+                    <!-- Пароль -->
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i>
+                            Пароль
+                        </label>
+                        <div class="password-wrapper">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Минимум 8 символов"
+                                minlength="8"
+                                required
+                            >
+                            <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                                <i class="far fa-eye" id="togglePasswordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Подтверждение пароля -->
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            <i class="fas fa-lock"></i>
+                            Подтвердите пароль
+                        </label>
+                        <div class="password-wrapper">
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirm_password"
+                                placeholder="Введите пароль ещё раз"
+                                minlength="8"
+                                required
+                            >
+                            <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Согласие с условиями -->
+                    <div class="terms">
+                        <div class="checkbox-group">
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                name="terms"
+                                required
+                                checked
+                            >
+                            <label for="terms">
+                                Я соглашаюсь с <a href="/terms" target="_blank">условиями использования</a>
+                                и <a href="/privacy" target="_blank">политикой конфиденциальности</a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="terms">
+                        <div class="checkbox-group">
+                            <input
+                                type="checkbox"
+                                id="newsletter"
+                                name="newsletter"
+                                checked
+                            >
+                            <label for="newsletter">
+                                Получать новости и специальные предложения
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка регистрации -->
+                    <button type="submit" class="btn-register" id="registerBtn">
+                        <i class="fas fa-user-plus"></i>
+                        Зарегистрироваться
+                    </button>
+
+                    <!-- Разделитель -->
+                    <div class="divider">или</div>
+
+                    <!-- Социальная регистрация -->
+                    <div class="social-register">
+                        <button type="button" class="social-btn" onclick="socialRegister('vk')">
+                            <i class="fab fa-vk"></i>
+                            VK
+                        </button>
+                        <button type="button" class="social-btn" onclick="socialRegister('google')">
+                            <i class="fab fa-google"></i>
+                            Google
+                        </button>
+                        <button type="button" class="social-btn" onclick="socialRegister('telegram')">
+                            <i class="fab fa-telegram"></i>
+                            Telegram
+                        </button>
+                    </div>
+
+                    <!-- Ссылка на вход -->
+                    <div class="login-prompt">
+                        <p>
+                            Уже есть аккаунт?
+                            <a href="/login">Войдите</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="container">
+        <div>© 2025 Брон.ик — бронирование недвижимости</div>
+        <div style="display: flex; gap: 28px;">
+            <a href="/terms">Правила</a>
+            <a href="/privacy">Конфиденциальность</a>
+            <a href="/support">Поддержка</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript для интерактивности -->
+    <script>
+        // Показать/скрыть пароль
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = event.currentTarget.querySelector('i');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Валидация формы
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const email = document.getElementById('email').value;
+            const firstName = document.getElementById('firstName').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Проверка заполнения
+            if (!firstName || !email || !password || !confirmPassword) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+
+            // Проверка email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Введите корректный email адрес');
+                return;
+            }
+
+            // Проверка длины пароля
+            if (password.length < 8) {
+                alert('Пароль должен содержать минимум 8 символов');
+                return;
+            }
+
+            // Проверка совпадения паролей
+            if (password !== confirmPassword) {
+                alert('Пароли не совпадают');
+                return;
+            }
+
+            // Проверка согласия с условиями
+            if (!terms) {
+                alert('Необходимо согласиться с условиями использования');
+                return;
+            }
+
+            // Если всё ок - имитация отправки
+            const btn = document.getElementById('registerBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Регистрация...';
+            btn.disabled = true;
+
+            // Имитация запроса к серверу
+            setTimeout(() => {
+                alert('✅ Регистрация прошла успешно! (Демо-режим)');
+                window.location.href = '/';
+            }, 1500);
+        });
+
+        // Социальная регистрация
+        function socialRegister(provider) {
+            alert(`🔐 Регистрация через ${provider} (демо-режим)`);
+        }
+
+        // Форматирование телефона (простой пример)
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 1) {
+                    value = `+7 (${value}`;
+                } else if (value.length <= 4) {
+                    value = `+7 (${value.slice(1, 4)}`;
+                } else if (value.length <= 7) {
+                    value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}`;
+                } else if (value.length <= 9) {
+                    value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7, 9)}`;
+                } else {
+                    value = `+7 (${value.slice(1, 4)}) ${value.slice(4, 7)}-${value.slice(7, 9)}-${value.slice(9, 11)}`;
+                }
+                e.target.value = value;
+            }
+        });
+
+        // Визуальный эффект при фокусе на полях
+        const inputs = document.querySelectorAll('input:not([type="checkbox"])');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+    </script>
+</body>
+</html>

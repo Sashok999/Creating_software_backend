@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход | Брон.ик</title>
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9eff7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* Навигация */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+            padding: 16px 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #1a4cff 0%, #7b3fe4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-weight: 600;
+            background: none;
+            -webkit-text-fill-color: #1e293b;
+            color: #1e293b;
+        }
+
+        .back-link {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #1a4cff;
+        }
+
+        /* Основной контент */
+        .auth-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .auth-card {
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px -20px rgba(26, 76, 255, 0.3);
+            width: 100%;
+            max-width: 460px;
+            padding: 48px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .auth-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0b1e33;
+            margin-bottom: 12px;
+        }
+
+        .auth-header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .auth-header p a {
+            color: #1a4cff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .auth-header p a:hover {
+            color: #0f3ad0;
+            text-decoration: underline;
+        }
+
+        /* Форма входа */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-group label i {
+            color: #1a4cff;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            padding: 16px 20px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 30px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a4cff;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(26, 76, 255, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #94a3b8;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 50px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            cursor: pointer;
+            transition: color 0.2s;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+        }
+
+        .toggle-password:hover {
+            color: #1a4cff;
+        }
+
+        /* Дополнительные опции */
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0 4px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #1a4cff;
+            cursor: pointer;
+        }
+
+        .remember-me label {
+            font-size: 14px;
+            color: #475569;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: #1a4cff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .forgot-password:hover {
+            color: #0f3ad0;
+            text-decoration: underline;
+        }
+
+        /* Кнопка входа */
+        .btn-login {
+            background: #1a4cff;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 16px 28px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 10px 20px -8px #1a4cff;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-login:hover {
+            background: #0f3ad0;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -8px #1a4cff;
+        }
+
+        /* Демо-доступ */
+        .demo-access {
+            background: #f0f7ff;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 24px 0 16px;
+            border: 1px dashed #1a4cff;
+        }
+
+        .demo-access p {
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .demo-access p i {
+            color: #1a4cff;
+            font-size: 16px;
+        }
+
+        .demo-credentials {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+        }
+
+        .demo-credentials div {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #475569;
+        }
+
+        .demo-credentials i {
+            width: 20px;
+            color: #1a4cff;
+        }
+
+        .demo-credentials button {
+            background: #e6f0ff;
+            border: none;
+            border-radius: 30px;
+            padding: 8px 16px;
+            color: #1a4cff;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: auto;
+        }
+
+        .demo-credentials button:hover {
+            background: #1a4cff;
+            color: white;
+        }
+
+        /* Разделитель */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 24px 0 16px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .divider::before {
+            margin-right: 16px;
+        }
+
+        .divider::after {
+            margin-left: 16px;
+        }
+
+        /* Социальный вход */
+        .social-login {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 30px;
+            background: white;
+            font-size: 16px;
+            font-weight: 500;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            max-width: 120px;
+        }
+
+        .social-btn:hover {
+            border-color: #1a4cff;
+            background: #f5f9ff;
+            transform: translateY(-2px);
+        }
+
+        .social-btn i {
+            font-size: 20px;
+        }
+
+        .social-btn .fa-vk {
+            color: #4a76a8;
+        }
+
+        .social-btn .fa-google {
+            color: #ea4335;
+        }
+
+        .social-btn .fa-telegram {
+            color: #0088cc;
+        }
+
+        /* Регистрация */
+        .register-prompt {
+            text-align: center;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid #eef2f6;
+        }
+
+        .register-prompt p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .register-prompt a {
+            color: #1a4cff;
+            text-decoration: none;
+            font-weight: 700;
+            margin-left: 6px;
+            transition: color 0.2s;
+        }
+
+        .register-prompt a:hover {
+            color: #0f3ad0;
+            text-decoration: underline;
+        }
+
+        /* Футер */
+        footer {
+            padding: 24px 0;
+            border-top: 1px solid #dee6ed;
+            color: #475569;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            background: transparent;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #475569;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: #1a4cff;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .auth-card {
+                padding: 36px 24px;
+                margin: 0 16px;
+            }
+
+            .login-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .social-login {
+                flex-wrap: wrap;
+            }
+
+            .social-btn {
+                max-width: none;
+                flex: 1 1 calc(33.333% - 8px);
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .auth-header h1 {
+                font-size: 28px;
+            }
+
+            .social-btn {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">Брон<span>.ик</span></a>
+            <a href="/" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                <span>Вернуться на главную</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>Добро пожаловать!</h1>
+                    <p>Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
+                </div>
+
+                <form class="login-form" id="loginForm" method="post" action="/login">
+                    <!-- Email или телефон -->
+                    <div class="form-group">
+                        <label for="login">
+                            <i class="fas fa-user"></i>
+                            Email или телефон
+                        </label>
+                        <input 
+                            type="text" 
+                            id="login" 
+                            name="login" 
+                            placeholder="example@mail.ru или +7 (999) 123-45-67"
+                            required
+                            autofocus
+                        >
+                    </div>
+
+                    <!-- Пароль -->
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i>
+                            Пароль
+                        </label>
+                        <div class="password-wrapper">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Введите пароль"
+                                required
+                            >
+                            <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                                <i class="far fa-eye" id="togglePasswordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Дополнительные опции -->
+                    <div class="login-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember" checked>
+                            <label for="remember">Запомнить меня</label>
+                        </div>
+                        <a href="/forgot-password" class="forgot-password">Забыли пароль?</a>
+                    </div>
+
+                    <!-- Демо-доступ (для удобства тестирования) -->
+                    <div class="demo-access">
+                        <p>
+                            <i class="fas fa-flask"></i>
+                            Демо-доступ для тестирования
+                        </p>
+                        <div class="demo-credentials">
+                            <div>
+                                <i class="fas fa-envelope"></i>
+                                <span>demo@bron.ik</span>
+                                <button type="button" onclick="fillDemoCredentials()">Вставить</button>
+                            </div>
+                            <div>
+                                <i class="fas fa-lock"></i>
+                                <span>••••••••</span>
+                                <span style="color: #94a3b8; margin-left: auto;">пароль: demo123</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка входа -->
+                    <button type="submit" class="btn-login" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Войти
+                    </button>
+
+                    <!-- Разделитель -->
+                    <div class="divider">или войти через</div>
+
+                    <!-- Социальный вход -->
+                    <div class="social-login">
+                        <button type="button" class="social-btn" onclick="socialLogin('vk')">
+                            <i class="fab fa-vk"></i>
+                            VK
+                        </button>
+                        <button type="button" class="social-btn" onclick="socialLogin('google')">
+                            <i class="fab fa-google"></i>
+                            Google
+                        </button>
+                        <button type="button" class="social-btn" onclick="socialLogin('telegram')">
+                            <i class="fab fa-telegram"></i>
+                            Telegram
+                        </button>
+                    </div>
+
+                    <!-- Ссылка на регистрацию -->
+                    <div class="register-prompt">
+                        <p>
+                            Впервые на Брон.ик?
+                            <a href="/register">Создайте аккаунт</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="container">
+        <div>© 2025 Брон.ик — бронирование недвижимости</div>
+        <div style="display: flex; gap: 28px;">
+            <a href="/terms">Правила</a>
+            <a href="/privacy">Конфиденциальность</a>
+            <a href="/support">Поддержка</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript для интерактивности -->
+    <script>
+        // Показать/скрыть пароль
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = event.currentTarget.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Заполнить демо-данными
+        function fillDemoCredentials() {
+            document.getElementById('login').value = 'demo@bron.ik';
+            document.getElementById('password').value = 'demo123';
+            
+            // Подсветка полей
+            document.getElementById('login').style.background = '#e6f7e6';
+            document.getElementById('password').style.background = '#e6f7e6';
+            
+            setTimeout(() => {
+                document.getElementById('login').style.background = '';
+                document.getElementById('password').style.background = '';
+            }, 500);
+        }
+
+        // Обработка формы входа
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('password').value;
+            
+            // Проверка заполнения
+            if (!login || !password) {
+                alert('Пожалуйста, введите логин и пароль');
+                return;
+            }
+            
+            // Простейшая валидация (демо)
+            if (password.length < 4) {
+                alert('Пароль должен содержать минимум 4 символа');
+                return;
+            }
+            
+            // Имитация отправки
+            const btn = document.getElementById('loginBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Вход...';
+            btn.disabled = true;
+            
+            // Проверка демо-данных
+            if (login === 'demo@bron.ik' && password === 'demo123') {
+                setTimeout(() => {
+                    alert('✅ Успешный вход! (Демо-режим)');
+                    window.location.href = '/';
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    alert('❌ Неверный логин или пароль. Попробуйте demo@bron.ik / demo123');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 1000);
+            }
+        });
+
+        // Социальный вход
+        function socialLogin(provider) {
+            alert(`🔐 Вход через ${provider} (демо-режим)`);
+        }
+
+        // Автозаполнение телефона (если пользователь вводит телефон)
+        document.getElementById('login').addEventListener('input', function(e) {
+            let value = e.target.value;
+            // Если начинается с цифры или + - пробуем форматировать как телефон
+            if (value.match(/^[\d+]/) && !value.includes('@')) {
+                // Простое форматирование, если нужно
+                let numbers = value.replace(/\D/g, '');
+                if (numbers.length > 0 && numbers[0] === '7' || numbers[0] === '8') {
+                    // Не форматируем жестко, чтобы не мешать вводу email
+                }
+            }
+        });
+
+        // Добавляем обработку Enter для быстрого входа
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }
+        });
+    </script>
+</body>
+</html>
