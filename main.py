@@ -14,7 +14,7 @@ import bcrypt
 1. главная +
 2. регистрация +
 3. вход +
-4. страцница резултата
+4. страцница резултата - юзер нажимает найти, с фронта тянет json, обрабатываю его, делаю запрос в бд, и соответственно снова обрабатываю и отправляю то что мне пришло отправляю на фронт в json
 5. карочка недвижимости
 6. профиль юзера
 7. создание недвидимости
@@ -43,15 +43,19 @@ async def get_db():
 
 @app.get("/")
 async def main(request: Request):
-    return templates.TemplateResponse("main.html", {"request": request})
+    return templates.TemplateResponse(request, "main.html")
 
 @app.get("/register")
-async def say_hello(request: Request):
-    return templates.TemplateResponse("register.html", {"request": request})
+async def register_page(request: Request):
+    return templates.TemplateResponse(request, "register.html")
 
 @app.get("/login")
-async def say_hello(request: Request):
-    return templates.TemplateResponse("login.html", {"request": request})
+async def login_page(request: Request):
+    return templates.TemplateResponse(request, "login.html")
+
+@app.get("/search")
+async def login_page(request: Request):
+    return templates.TemplateResponse(request, "search.html")
 
 '''
 {"name" : Алексей,
@@ -84,6 +88,60 @@ async def check_login(request: Request):
                         (request["email"], request["password_hash"]))
     print(a)
 
+@app.post("/search")
+async def search(request: Request):
+    con = request.app.state.con
+
+    try:
+        data = await request.json()
+    except Exception:
+        data = {}
+
+    conditions = ["r.is_active = TRUE"]
+    params = []
+    i = 1
+
+    if data.get("location"):
+        conditions.append(f"r.location ILIKE ${i}")
+        params.append(f"%{data['location']}%")
+        i += 1
+
+    if data.get("type"):
+        conditions.append(f"r.type = ${i}")
+        params.append(data["type"])
+        i += 1
+
+    if data.get("date_from") and data.get("date_to"):
+        conditions.append(f"""
+            r.id NOT IN (
+                SELECT resource_id FROM bookings
+                WHERE status NOT IN ('CANCELLED')
+                AND NOT (end_time <= ${i} OR start_time >= ${i+1})
+            )
+        """)
+        params.append(data["date_from"])
+        params.append(data["date_to"])
+        i += 2
+
+    where = "WHERE " + " AND ".join(conditions)
+
+    rows = await con.fetch(
+        f"""
+        SELECT r.id, r.name, r.type, r.description,
+               r.address, r.location, r.base_price
+        FROM resources r
+        {where}
+        ORDER BY r.id
+        LIMIT 50
+        """,
+        *params
+    )
+
+    return {"results": [dict(row) for row in rows]}
+
+@app.get("/v0/version")
+async def api_version():
+     return {"version": app_version}
 
 if __name__ == '__main__':
     asyncio.run(get_db())
