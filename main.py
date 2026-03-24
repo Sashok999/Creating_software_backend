@@ -6,6 +6,8 @@ import dotenv
 import os
 import asyncio
 import asyncpg
+from contextlib import asynccontextmanager
+from datetime import datetime, date
 import bcrypt
 
 '''
@@ -18,12 +20,24 @@ import bcrypt
 7. создание недвидимости
 '''
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup - создаем соединение при запуске
+    app.state.con = await asyncpg.connect(dsn=os.getenv("DB_URL"), ssl="require")
+    print("Connected to database")
+    yield
+    # Shutdown - закрываем соединение при остановке
+    await app.state.con.close()
+    print("Disconnected from database")
+
+app = FastAPI(lifespan=lifespan)
 dotenv.load_dotenv()
+now = datetime.now()
 templates = Jinja2Templates(directory="pages")
 
-global con
+
 async def get_db():
+    global con
     con = await asyncpg.connect(dsn=os.getenv("DB_URL"), ssl="require")
     print("Connected to database")
 
@@ -43,19 +57,32 @@ async def say_hello(request: Request):
 {"name" : Алексей,
 "surname": Иванов,
 "email": ivanov@mail,ru,
-"password": Poll123!,
-"created_at": 2026-03-12
+"password": Poll123!
 }'''
 
 @app.post("/register")
-async def check_register(user: User, request: Request):
-    a = await con.fetch("SELECT email FROM users WHERE email = $1", user.email)
-    if user.email in a:
+async def check_register(request: Request):
+    con = request.app.state.con
+    request = await request.json()
+
+    a = await con.fetch("SELECT email FROM users WHERE email = $1", request["email"])
+    print(a)
+    if request['email'] in a:
         print('qq')
         return {"message": "почта занята"}
-    f = await con.execute("INSERT INTO user (email, password_hash, full_name, role, created_at) VALUES ($1, $2, $3, $4, $5)", user.email, user.password, user.full_name, user.role, user.created_at)
+    f = await con.execute("INSERT INTO users (email, password_hash, name, surname, role, created_at) VALUES ($1, $2, $3, $4, $5, $6)",
+                          request["email"], request["password"], request["name"], request["surname"], '"user"', date.today())
     print('ready')
+    print(f)
     return {"message": 'ok'}
+
+@app.post("/login")
+async def check_login(request: Request):
+    con = request.app.state.con
+    request = await request.json()
+    a = await con.fetch("SELECT email, password_hash FROM users WHERE email = $1 AND password_hash = $2",
+                        (request["email"], request["password_hash"]))
+    print(a)
 
 
 if __name__ == '__main__':
