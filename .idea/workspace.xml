@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ea045bb-0c17-48f8-b628-ff7ab603f191" name="Changes" comment="init commit">
-      <change afterPath="$PROJECT_DIR$/models/ai_price_prediction_mpdel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/audlt_log_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/booking_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/booking_service_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/demand_statistics_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/message_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/payment_method_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/payment_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/resource_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/service_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/transaction_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/user_model.py" afterDir="false" />
+    <list default="true" id="6ea045bb-0c17-48f8-b628-ff7ab603f191" name="Changes" comment="rework db connect">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/user_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +35,9 @@
     &quot;accountId&quot;: &quot;84ceecda-f4a0-4a06-bdeb-1ed2ad409da3&quot;
   }
 }</component>
+  <component name="HttpClientOnboardingState">{
+  &quot;isOnboardingCommentShown&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -53,24 +46,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "FastAPI.Creating_software_backend.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;FastAPI.Creating_software_backend.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.webpack&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Creating_software_backend" type="Python.FastAPI">
       <option name="file" value="$PROJECT_DIR$/main.py" />
@@ -106,7 +99,17 @@
       <workItem from="1773842143939" duration="496000" />
       <workItem from="1773843259748" duration="281000" />
       <workItem from="1773843558882" duration="1590000" />
-      <workItem from="1773852197992" duration="7797000" />
+      <workItem from="1773852197992" duration="8483000" />
+      <workItem from="1773916777890" duration="1508000" />
+      <workItem from="1773956389430" duration="2196000" />
+      <workItem from="1774096369525" duration="977000" />
+      <workItem from="1774105535870" duration="1790000" />
+      <workItem from="1774120036838" duration="4720000" />
+      <workItem from="1774172439581" duration="1995000" />
+      <workItem from="1774204540035" duration="616000" />
+      <workItem from="1774375540516" duration="5225000" />
+      <workItem from="1774391139160" duration="444000" />
+      <workItem from="1774423606449" duration="5871000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <option name="closed" value="true" />
@@ -116,7 +119,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773844969184</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="create all model for interpret db">
+      <option name="closed" value="true" />
+      <created>1773860386756</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773860386756</updated>
+    </task>
+    <task id="LOCAL-00003" summary="rework db connect">
+      <option name="closed" value="true" />
+      <created>1774377456645</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1774377456645</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,9 +143,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="init commit" />
+    <MESSAGE value="create all model for interpret db" />
+    <MESSAGE value="rework db connect" />
+    <option name="LAST_COMMIT_MESSAGE" value="rework db connect" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Creating_software_backend$Creating_software_backend.coverage" NAME="Creating_software_backend Coverage Results" MODIFIED="1773857422581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Creating_software_backend$Creating_software_backend.coverage" NAME="Creating_software_backend Coverage Results" MODIFIED="1774429368337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
