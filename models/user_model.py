@@ -10,6 +10,7 @@ Table users {
   surname varchar
   role varchar // admin, employee, client
   created_at timestamp
+  salt text
 }'''
 
 
@@ -21,3 +22,4 @@ class User(BaseModel):
     surname: str
     role: str
     created_at: datetime
+    salt: str

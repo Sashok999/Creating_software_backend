@@ -56,37 +56,47 @@ async def login_page(request: Request):
 @app.get("/search")
 async def login_page(request: Request):
     return templates.TemplateResponse(request, "search.html")
-
 '''
 {"name" : Алексей,
 "surname": Иванов,
-"email": ivanov@mail,ru,
+"email": ivanov@mail.ru,
 "password": Poll123!
 }'''
 
 @app.post("/register")
 async def check_register(request: Request):
     con = request.app.state.con
-    request = await request.json()
+    data = await request.json()
 
-    a = await con.fetch("SELECT email FROM users WHERE email = $1", request["email"])
-    print(a)
-    if request['email'] in a:
-        print('qq')
+    a = await con.fetch("SELECT email FROM users WHERE email = $1", data["email"])
+    salt = bcrypt.gensalt()
+    password_hash = bcrypt.hashpw(data["password"].encode("utf8"), salt)
+    if a:
         return {"message": "почта занята"}
-    f = await con.execute("INSERT INTO users (email, password_hash, name, surname, role, created_at) VALUES ($1, $2, $3, $4, $5, $6)",
-                          request["email"], request["password"], request["name"], request["surname"], '"user"', date.today())
-    print('ready')
-    print(f)
+    f = await con.execute("INSERT INTO users (email, password_hash, salt, name, surname, role, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+                       data["email"], str(password_hash), str(salt), data["name"], data["surname"], '"user"', date.today())
     return {"message": 'ok'}
 
+
+
+'''
+{"email": ivan123ov@mail.ru,
+"password": Poll123!
+}'''
 @app.post("/login")
 async def check_login(request: Request):
     con = request.app.state.con
-    request = await request.json()
-    a = await con.fetch("SELECT email, password_hash FROM users WHERE email = $1 AND password_hash = $2",
-                        (request["email"], request["password_hash"]))
-    print(a)
+    data = await request.json()
+    a = await con.fetch("SELECT email, password_hash FROM users WHERE email = $1", data["email"])
+    if a == None:
+        return {"message": "не существует"}
+
+    print(len(a))
+    if bcrypt.checkpw(data["password"].encode("utf8"), password_hash):
+            return {"message": "разрешен вход"}
+    else:
+        return {"message": "неправильный логин и пароль"}
+
 
 @app.post("/search")
 async def search(request: Request):
