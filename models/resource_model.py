@@ -8,6 +8,8 @@ from pydantic import BaseModel
   description text
   base_price decimal
   is_active boolean
+  address varchar
+  location varchar
 }'''
 
 class Resource(BaseModel):
@@ -17,3 +19,5 @@ class Resource(BaseModel):
     description: str
     base_price: float
     is_active: bool
+    address: str
+    location: str

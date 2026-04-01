@@ -641,12 +641,23 @@
                     alert(`✨ Спасибо! Вы выбрали: «${cardTitle}». \nДемо-версия: бронирование пока не работает.`);
                 });
             });
-            // Кнопка "Найти" тоже что-то делает
+
+            // Кнопка "Найти" — собираем поля и переходим на /search
             const searchBtn = document.querySelector('.search-btn');
             if (searchBtn) {
                 searchBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    alert('🔍 Поиск: демо-режим. Здесь будет переход к результатам.');
+
+                    const location  = document.querySelector('.search-field input[type="text"]')?.value.trim() || '';
+                    const dateFrom  = document.querySelectorAll('.search-field input[type="text"]')[1]?.value.trim() || '';
+                    const dateTo    = document.querySelectorAll('.search-field input[type="text"]')[2]?.value.trim() || '';
+
+                    const params = new URLSearchParams();
+                    if (location) params.set('location', location);
+                    if (dateFrom)  params.set('date_from', dateFrom);
+                    if (dateTo)    params.set('date_to', dateTo);
+
+                    window.location.href = '/search?' + params.toString();
                 });
             }
         })();
