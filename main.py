@@ -8,6 +8,7 @@ from contextlib import asynccontextmanager
 from datetime import datetime, date
 import bcrypt
 from typing import Optional
+from ai_router import ai_router
 
 
 @asynccontextmanager
@@ -29,7 +30,7 @@ os.makedirs("pages", exist_ok=True)
 os.makedirs("static", exist_ok=True)
 templates = Jinja2Templates(directory="pages")
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
+app.include_router(ai_router, prefix="/ai", tags=["AI"])
 
 def get_current_user(request: Request) -> Optional[dict]:
     return request.session.get("user")
