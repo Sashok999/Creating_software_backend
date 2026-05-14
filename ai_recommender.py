@@ -65,7 +65,7 @@ def train_model(data_path: str = str(DATA_PATH)) -> dict:
         "precision": round(precision_score(y_test, y_pred, zero_division=0), 4),
         "recall": round(recall_score(y_test, y_pred, zero_division=0), 4),
     }
-
+#22
     with open(MODEL_PATH, "wb") as f:
         pickle.dump(clf, f)
     with open(ENCODERS_PATH, "wb") as f:

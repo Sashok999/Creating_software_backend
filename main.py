@@ -19,7 +19,7 @@ async def lifespan(app: FastAPI):
     await app.state.con.close()
     print("Disconnected from database")
 
-
+#22
 app = FastAPI(lifespan=lifespan)
 dotenv.load_dotenv()
 

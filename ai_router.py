@@ -55,7 +55,7 @@ async def recommend(body: RecommendRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ошибка рекомендации: {e}")
 
-
+#22
 @ai_router.get("/status")
 async def status():
     try:
