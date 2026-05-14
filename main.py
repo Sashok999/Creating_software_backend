@@ -73,11 +73,8 @@ async def check_register(request: Request):
 async def check_login(request: Request):
     con = request.app.state.con
     data = await request.json()
-    user = await con.fetchrow("""
-                              SELECT id, email, password_hash, name, surname, role
-                              FROM users
-                              WHERE email = $1
-                              """, data["email"])
+    user = await con.fetchrow("""SELECT id, email, password_hash, name, surname, role FROM users
+                              WHERE email = $1""", data["email"])
     if not user:
         return {"message": "Пользователь не найден", "status": "error"}
     if bcrypt.checkpw(data["password"].encode("utf8"), user["password_hash"].encode('utf8')):

@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ea045bb-0c17-48f8-b628-ff7ab603f191" name="Changes" comment="add registration and start login">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+    <list default="true" id="6ea045bb-0c17-48f8-b628-ff7ab603f191" name="Changes" comment="ai">
+      <change afterPath="$PROJECT_DIR$/training_data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -20,6 +20,7 @@
         <option value="FastAPI main" />
         <option value="FastAPI test_main" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -52,25 +53,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "FastAPI.Creating_software_backend.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Sashok/FastAPIProject/Creating_software_backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Errors",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;FastAPI.Creating_software_backend.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Sashok/FastAPIProject/Creating_software_backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Sashok\FastAPIProject\Creating_software_backend" />
@@ -127,7 +129,26 @@
       <workItem from="1774709170864" duration="130000" />
       <workItem from="1775025908902" duration="1061000" />
       <workItem from="1775028457381" duration="393000" />
-      <workItem from="1775030403502" duration="3348000" />
+      <workItem from="1775030403502" duration="4087000" />
+      <workItem from="1775036139773" duration="2770000" />
+      <workItem from="1775042181091" duration="4115000" />
+      <workItem from="1775293722859" duration="27000" />
+      <workItem from="1775294466449" duration="2766000" />
+      <workItem from="1775490945093" duration="667000" />
+      <workItem from="1775635307495" duration="99000" />
+      <workItem from="1775635909712" duration="2673000" />
+      <workItem from="1775640647701" duration="1612000" />
+      <workItem from="1775644675341" duration="21000" />
+      <workItem from="1775646514013" duration="850000" />
+      <workItem from="1775647810966" duration="3376000" />
+      <workItem from="1775653400827" duration="1108000" />
+      <workItem from="1775730936810" duration="2486000" />
+      <workItem from="1775752759469" duration="45000" />
+      <workItem from="1775827277340" duration="1546000" />
+      <workItem from="1777544156480" duration="1659000" />
+      <workItem from="1777727949282" duration="6000" />
+      <workItem from="1778151906615" duration="306000" />
+      <workItem from="1778497323128" duration="14000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <option name="closed" value="true" />
@@ -161,7 +182,23 @@
       <option name="project" value="LOCAL" />
       <updated>1774429788130</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="all backend in one commit">
+      <option name="closed" value="true" />
+      <created>1775033786061</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775033786061</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ai">
+      <option name="closed" value="true" />
+      <created>1775636439787</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1775636439787</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,9 +209,11 @@
     <MESSAGE value="create all model for interpret db" />
     <MESSAGE value="rework db connect" />
     <MESSAGE value="add registration and start login" />
-    <option name="LAST_COMMIT_MESSAGE" value="add registration and start login" />
+    <MESSAGE value="all backend in one commit" />
+    <MESSAGE value="ai" />
+    <option name="LAST_COMMIT_MESSAGE" value="ai" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Creating_software_backend$Creating_software_backend.coverage" NAME="Creating_software_backend Coverage Results" MODIFIED="1775032132599" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Creating_software_backend$Creating_software_backend.coverage" NAME="Creating_software_backend Coverage Results" MODIFIED="1775831432735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
